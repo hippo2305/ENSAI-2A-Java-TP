@@ -64,9 +64,29 @@ public class Password {
      */
     public static boolean isStrongPassword(String password) {
 
-        // Code here
+        char[] password_array = password.toCharArray();
 
-        return false;
+        boolean cond1 = password_array.length >= 12;
+        boolean cond2 = false;
+        boolean cond3 = false;
+        boolean cond4 = false;
+        boolean cond5 = false;
+
+        for (char character: password_array) {
+            if (Character.isUpperCase(character)) {
+                cond2 = true;
+                continue;
+            } else if (Character.isLowerCase(character)) {
+                cond3 = true;
+                continue;
+            } else if (Character.isDigit(character)) {
+                cond4 = true;
+                continue;
+            } else if (!Character.isWhitespace(character)) {
+                cond5 = true;
+            }
+        }
+        return (cond1 && cond2 && cond3 && cond4 && cond5);
     }
 
     /**
