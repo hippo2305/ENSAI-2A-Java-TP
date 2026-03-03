@@ -1,5 +1,6 @@
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -70,7 +71,7 @@ public class Password {
         boolean cond2 = false;
         boolean cond3 = false;
         boolean cond4 = false;
-        boolean cond5 = false;
+        boolean cond5 = true;
 
         for (char character: password_array) {
             if (Character.isUpperCase(character)) {
@@ -82,8 +83,8 @@ public class Password {
             } else if (Character.isDigit(character)) {
                 cond4 = true;
                 continue;
-            } else if (!Character.isWhitespace(character)) {
-                cond5 = true;
+            } else if (Character.isWhitespace(character)) {
+                cond5 = false;
             }
         }
         return (cond1 && cond2 && cond3 && cond4 && cond5);
@@ -99,9 +100,13 @@ public class Password {
      */
     public static HashMap<String, Boolean> checkPasswordsList(ArrayList<String> passwords) {
 
-        // Code here
+        HashMap<String, Boolean> return_map = new HashMap<>();
 
-        return null;
+        for (String password: passwords) {
+            return_map.put(password, isStrongPassword(password));
+        }
+
+        return return_map;
     }
 
     /**
@@ -118,9 +123,30 @@ public class Password {
      */
     public static String generatePassword(int nbCar) {
 
-        // Code here
+        SecureRandom random = new SecureRandom();
+        int password_length = random.nextInt(20);
 
-        return null;
+        String lower_letters = "abcdefghijklmnopqrstuvwxyz";
+        String upper_letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String digits = "0123456789";
+        String special_characters = "&#!:@/?";
+        String all_groups = lower_letters + upper_letters + digits + special_characters;
+
+        List<Character> password_array = new ArrayList<Character>();
+        
+        password_array.add(lower_letters.charAt(random.nextInt(lower_letters.length())));
+        password_array.add(upper_letters.charAt(random.nextInt(upper_letters.length()))); 
+        password_array.add(digits.charAt(random.nextInt(digits.length()))); 
+        password_array.add(special_characters.charAt(random.nextInt(special_characters.length()))); 
+ 
+
+        for (int i = 0; i <= password_length; i++) {
+            password_array.add(all_groups.charAt(random.nextInt(all_groups.length())));
+        }
+
+        // password_array = Collections.shuffle(password_array);
+
+        return password_array.toString();
     }
 
     public static void main(String[] args) {
