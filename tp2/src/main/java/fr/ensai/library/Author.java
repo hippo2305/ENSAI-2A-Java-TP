@@ -8,7 +8,7 @@ import java.util.Objects;
 public class Author {
 
     // Attributes
-    private String name;
+    protected String authorName;
     private int age;
     private String nationality;
 
@@ -16,13 +16,15 @@ public class Author {
      * Constructs a new Book object.
      */
     public Author(String name, int age, String nationality) {
-        this.name = name;
+        this.authorName = name;
         this.age = age;
         this.nationality = nationality;
     }
 
-    public String getName() {
-        return this.name;
+    public Author(String name) {
+        this.authorName = name;
+        this.age = 0;
+        this.nationality = "";
     }
 
     /**
