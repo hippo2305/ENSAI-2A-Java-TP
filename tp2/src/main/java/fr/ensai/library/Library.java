@@ -10,11 +10,15 @@ import java.util.Map;
 
 public class Library {
     private String name;
-    private ArrayList<Book> books;
+    private ArrayList<Item> items;
+    private ArrayList<Loan> activeLoans;
+    private ArrayList<Loan> completedLoans;
 
     public Library(String name) {
         this.name = name;
-        this.books = new ArrayList<>();
+        this.items = new ArrayList<>();
+        this.activeLoans = new ArrayList<>();
+        this.completedLoans = new ArrayList<>();
     }
 
     /**
@@ -22,9 +26,33 @@ public class Library {
      * 
      * @param book The book object to add to the library
      */
-    public void addBook(Book book) {
-        this.books.add(book);
+    public void addItem(Item item) {
+        this.items.add(item);
     }
+
+    public String displayItems() {
+        if (this.items.size() == 0) {
+            return "This library is empty !\n";
+        } else {
+            String returnString = "";
+            for (Item item : this.items) {
+                returnString += item.toString();
+                returnString += "\n";
+            }
+            return returnString;
+        }
+
+    }
+
+    /*
+     * public Loan findActiveLoanForItem(Item item) {
+     * for (Loan loan : activeLoans) {
+     * if (loan.getItem() == item) {
+     * return loan;
+     * }
+     * }
+     * }
+     */
 
     /**
      * Loads books from a CSV file and adds them to the library.
@@ -48,20 +76,20 @@ public class Library {
                 if (data.length == 5) {
                     String isbn = data[0].trim();
                     String title = data[1].trim();
-                    String authorName = data[2].trim();
+                    String name = data[2].trim();
                     int year = Integer.parseInt(data[3].trim());
                     int pageCount = Integer.parseInt(data[4].trim());
 
                     // Check if author already exists in the map
-                    Author author = authors.get(authorName);
+                    Author author = authors.get(name);
                     if (author == null) {
-                        author = new Author(authorName);
-                        authors.put(authorName, author);
+                        author = new Author(name);
+                        authors.put(name, author);
                         // System.out.println(String.format("Create %s", author));
                     }
-                    Book book = new Book(isbn, title, author, year, pageCount);
+                    Book book = new Book(title, year, pageCount, isbn, author);
 
-                    this.addBook(book);
+                    this.addItem(book);
                 }
             }
         } catch (

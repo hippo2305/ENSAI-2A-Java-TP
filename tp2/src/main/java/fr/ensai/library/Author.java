@@ -5,25 +5,21 @@ import java.util.Objects;
 /**
  * Represents an Author.
  */
-public class Author {
+public class Author extends Person {
 
     // Attributes
-    protected String authorName;
-    private int age;
     private String nationality;
 
     /**
      * Constructs a new Book object.
      */
     public Author(String name, int age, String nationality) {
-        this.authorName = name;
-        this.age = age;
+        super(name, age);
         this.nationality = nationality;
     }
 
     public Author(String name) {
-        this.authorName = name;
-        this.age = 0;
+        super(name, 0);
         this.nationality = "";
     }
 
@@ -39,12 +35,12 @@ public class Author {
             return false;
 
         Author author = (Author) obj;
-        return Objects.equals(name, author.name);
+        return Objects.equals(this.name, author.name);
     }
 
     @Override
     public String toString() {
-        return "Author " + name;
+        return "Author " + this.name;
     }
 
 }
