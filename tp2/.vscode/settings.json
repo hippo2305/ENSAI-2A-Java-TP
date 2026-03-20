@@ -1,7 +1,28 @@
 {
+<<<<<<< HEAD
     "editor.inlayHints.enabled": "off",
     "editor.formatOnSave": true,
     "java.saveActions.organizeImports": true,
     "cSpell.diagnosticLevel": "Hint",
+=======
+    "workbench.colorTheme": "Default Dark Modern",
+    "editor.fontSize": 16,
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4,
+    "explorer.compactFolders": false,
+    "[java]": {    
+        "editor.wordWrap": "wordWrapColumn",
+        "editor.wrappingIndent": "indent",
+        "editor.wordWrapColumn": 120,
+        "editor.rulers": [
+            120
+        ],
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit",
+            "source.addMissingImports": "explicit"
+        },
+        "editor.inlayHints.enabled": "off",
+    },
+>>>>>>> a69da6e1632c51513e64a4b94eab350cab59ccc6
     "java.configuration.updateBuildConfiguration": "interactive"
 }

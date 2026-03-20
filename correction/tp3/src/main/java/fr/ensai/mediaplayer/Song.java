@@ -2,8 +2,11 @@ package fr.ensai.mediaplayer;
 
 import java.util.List;
 import java.util.Objects;
+<<<<<<< HEAD
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+=======
+>>>>>>> a69da6e1632c51513e64a4b94eab350cab59ccc6
 
 /**
  * Represents a song with essential attributes.
@@ -43,7 +46,11 @@ public class Song extends Media {
      */
     @Override
     public String toString() {
+<<<<<<< HEAD
         return "Song " + this.title + " by " + this.singer;
+=======
+        return String.format("Song %s by %s", this.title, this.singer);
+>>>>>>> a69da6e1632c51513e64a4b94eab350cab59ccc6
     }
 
     /**
@@ -67,6 +74,7 @@ public class Song extends Media {
         return Objects.hash(this.title, this.singer, this.year);
     }
 
+<<<<<<< HEAD
     /**
      * Plays the Song by printing the lyrics with a small delay between each word.
      */
@@ -93,5 +101,10 @@ public class Song extends Media {
         } else {
             System.out.println("No lyrics available.");
         }
+=======
+    @Override
+    public String getText() {
+        return this.lyrics;
+>>>>>>> a69da6e1632c51513e64a4b94eab350cab59ccc6
     }
 }

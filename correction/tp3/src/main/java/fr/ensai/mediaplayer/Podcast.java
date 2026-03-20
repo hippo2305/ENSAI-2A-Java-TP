@@ -1,8 +1,11 @@
 package fr.ensai.mediaplayer;
 
+<<<<<<< HEAD
 import java.util.Arrays;
 import java.util.List;
 
+=======
+>>>>>>> a69da6e1632c51513e64a4b94eab350cab59ccc6
 /**
  * Represents a podcast.
  */
@@ -33,6 +36,7 @@ public class Podcast extends Media {
      */
     @Override
     public String toString() {
+<<<<<<< HEAD
         return "Podcast " + this.title + " by " + this.host;
     }
 
@@ -58,5 +62,13 @@ public class Podcast extends Media {
             }
         }
         System.out.println();
+=======
+        return String.format("Podcast %s by %s", this.title, this.host);
+    }
+
+    @Override
+    public String getText() {
+        return this.subtitles;
+>>>>>>> a69da6e1632c51513e64a4b94eab350cab59ccc6
     }
 }

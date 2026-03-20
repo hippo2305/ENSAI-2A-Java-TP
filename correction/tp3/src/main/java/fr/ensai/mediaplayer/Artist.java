@@ -29,7 +29,11 @@ public class Artist {
      * @return The first name followed by last name.
      */
     public String toString() {
+<<<<<<< HEAD
         return "Artist " + firstName + " " + lastName;
+=======
+        return String.format("Artist %s %s", this.firstName, this.lastName);
+>>>>>>> a69da6e1632c51513e64a4b94eab350cab59ccc6
     }
 
     /**
