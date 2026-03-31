@@ -18,7 +18,7 @@ public class Song extends Media {
      * @param duration The duration of the song in seconds.
      * @param content  The lyrics of the song.
      * @param year     The year the song was released.
-     * @param genre    The genre of the song
+     * @param genres    The genres of the song
      * @param singer   The singer of the song.
      * @param author   The author of the song.
      * @param composer The composer of the song.

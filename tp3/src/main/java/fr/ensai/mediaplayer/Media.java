@@ -1,8 +1,10 @@
 package fr.ensai.mediaplayer;
 
+import lombok.Getter;
+
 public abstract class Media {
     protected String title;
-    protected int duration;
+    @Getter protected int duration;
     protected String content;
     protected int year;
 

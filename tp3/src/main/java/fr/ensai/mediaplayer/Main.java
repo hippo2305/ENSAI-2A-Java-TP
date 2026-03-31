@@ -43,7 +43,7 @@ public class Main {
         newSong.play();
 
         Podcast newPodcast = new Podcast(
-            "Un album déjà annule",
+            "Un album déjà annulé",
             4500,
             "Bonjour et bienvenue dans le podcast dédié à la sortie de mon dernier album !\n" + //
             "J'ai toujours voulu faire un album sur l'Asie parce que j'adore ce pays \n" + //
