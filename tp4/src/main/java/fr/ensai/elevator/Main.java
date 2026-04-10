@@ -28,9 +28,11 @@ public class Main {
         }
 
         List<Elevator> elevators = new ArrayList<>();
-        for (int i = 0; i < elevatorsCount; i++) {
+        for (int i = 0; i < elevatorsCount - 1; i++) {
             elevators.add(new Elevator(i, 0, elevatorsCapacity));
         }
+
+        elevators.add(new CrazyElevator(elevatorsCount, 0, elevatorsCapacity));
 
         Hotel hotel = new Hotel(floors, elevators);
 
