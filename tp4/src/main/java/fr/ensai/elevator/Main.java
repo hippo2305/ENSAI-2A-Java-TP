@@ -16,19 +16,21 @@ public class Main {
         // Create Floors, Elevators and Hotel
         // --------------------------------------------------------------------
 
-        final int elevatorCapacity = Config.getInt("hotel.elevator.capacity");
+        final int elevatorsCapacity = Config.getInt("hotel.elevators.capacity");
+        final int elevatorsCount = Config.getInt("hotel.elevators.count");
+        final int floorsCount = Config.getInt("hotel.floors.count");
         final int nbSteps = Config.getInt("steps.count");
         final int msBetweenSteps = Config.getInt("steps.delay");
 
         List<Floor> floors = new ArrayList<>();
-        floors.add(new Floor(0));
-        floors.add(new Floor(1));
-        floors.add(new Floor(2));
-        floors.add(new Floor(3));
+        for (int i = 0; i < floorsCount; i++) {
+            floors.add(new Floor(i));
+        }
 
         List<Elevator> elevators = new ArrayList<>();
-        elevators.add(new Elevator(1, 0, elevatorCapacity));
-        elevators.add(new Elevator(2, 0, elevatorCapacity));
+        for (int i = 0; i < elevatorsCount; i++) {
+            elevators.add(new Elevator(i, 0, elevatorsCapacity));
+        }
 
         Hotel hotel = new Hotel(floors, elevators);
 

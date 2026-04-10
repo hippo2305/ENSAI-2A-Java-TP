@@ -20,6 +20,8 @@ public class Floor {
     private List<Person> waitingPeople;
     private double spawnProbability;
 
+    private static final int elevatorsCapacity = Config.getInt("hotel.elevators.capacity");
+
     private static Random random = new Random();
 
     /**
@@ -71,12 +73,34 @@ public class Floor {
 
     /**
      * Press the button to call the first elevator.
-     * Requests the first elevator to stop at this floor.
+     * Requests the least busy elevator if none of the elevators is already on its way to this floor.
      * 
      * @param elevators the list of elevators available in the hotel
      */
     public void requestElevator(List<Elevator> elevators) {
-        elevators.get(0).addDestination(this.number);
+        
+        boolean elevatorOnItsWay = false;
+        int currentBusiness = elevatorsCapacity;
+        Elevator leastBusyElevator = elevators.get(0);
+        
+        for (Elevator e: elevators) {
+            
+            // Detects if the elevator is already on its way
+            if (e.containDestination(this.number)) {
+                elevatorOnItsWay = true;
+            }
+            
+            // Search for the least busy elevator
+            if (e.getDestinationQueueSize() < currentBusiness) {
+                currentBusiness = e.getDestinationQueueSize();
+                leastBusyElevator = e;
+            }
+        }
+
+        // Adds the destination to the least busy elevator (if none already on its way)
+        if (!elevatorOnItsWay) {
+            leastBusyElevator.addDestination(this.number);
+        }
     }
 
     /**
