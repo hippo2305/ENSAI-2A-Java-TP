@@ -104,6 +104,15 @@ public class Elevator {
     }
 
     /**
+     * Adds a specific new passenger to the passengers list.
+     * 
+     * @param passenger the person to add to the passengers list.
+     */    
+    public void addPassenger(Person passenger) {
+        this.passengers.add(passenger);
+    }
+
+    /**
      * Unloads passengers whose target floor matches the current floor.
      * Updates the lastUnloaded list.
      * 

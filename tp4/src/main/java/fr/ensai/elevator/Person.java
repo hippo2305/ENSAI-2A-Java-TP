@@ -1,6 +1,9 @@
 package fr.ensai.elevator;
 
+import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * Represents a person in the hotel elevator simulation.
@@ -26,6 +29,10 @@ public class Person {
         this.nickname = Person.generateNickname();
         this.startFloor = startFloor;
         this.targetFloor = Person.generateTargetFloor();
+        // To unsure the random targetFloor isn't the same as the start floor
+        while (this.targetFloor == startFloor) {
+            this.targetFloor = Person.generateTargetFloor();
+        }
     }
 
     /**
