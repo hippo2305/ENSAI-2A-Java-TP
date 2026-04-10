@@ -20,7 +20,7 @@ public class CrazyElevator extends Elevator {
     public void move() {
         double randomDouble = random.nextDouble();
 
-        if (randomDouble < 0.33) {
+        if (randomDouble < 0.33 && !destinationQueue.isEmpty()) {
             destinationQueue.removeFirst();
             super.move();
         } else if (randomDouble >= 0.66) {

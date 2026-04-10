@@ -13,6 +13,7 @@ public class Person {
     private String nickname;
     private int startFloor;
     private int targetFloor;
+    private Direction direction;
 
     private static final String CHARS = "abcdefghijklmnopqrstuvwxyz";
     private static int NEXT_CHAR_INDEX = 0;
@@ -33,6 +34,7 @@ public class Person {
         while (this.targetFloor == startFloor) {
             this.targetFloor = Person.generateTargetFloor();
         }
+        this.direction = this.computeDirection();
     }
 
     /**
@@ -53,6 +55,21 @@ public class Person {
      */
     private static int generateTargetFloor() {
         return random.nextInt(floorsCount);
+    }
+
+    /**
+     * Returns the direction of the person, based on their startFloor and targetFloor.
+     * 
+     * @return the direction of the person
+     */    
+    public Direction computeDirection() {
+        if (this.startFloor < this.targetFloor) {
+            return Direction.UP;
+        } else if (this.startFloor > this.targetFloor) {
+            return Direction.DOWN;
+        } else {
+            return Direction.IDLE;
+        }
     }
 
     public String getNickname() {

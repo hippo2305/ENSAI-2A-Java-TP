@@ -18,10 +18,12 @@ import org.apache.logging.log4j.Logger;
 public class Elevator {
 
     private static final Logger logger = LogManager.getLogger(Elevator.class);
+    private static final int floorsCount = Config.getInt("hotel.floors.count");
 
     protected int id;
     protected int capacity;
     protected int currentFloor;
+    protected Direction direction;
     protected List<Integer> destinationQueue;
     protected List<Person> passengers;
     protected List<Person> lastUnloaded;
@@ -37,6 +39,7 @@ public class Elevator {
         this.id = id;
         this.capacity = capacity;
         this.currentFloor = startFloor;
+        this.direction = Direction.IDLE;
         this.destinationQueue = new ArrayList<>();
         this.passengers = new ArrayList<>();
         this.lastUnloaded = new ArrayList<>();
@@ -48,6 +51,21 @@ public class Elevator {
 
     public int getCurrentFloor() {
         return this.currentFloor;
+    }
+
+    /**
+     * Returns the direction of the elevator in the form of an arrow.
+     * 
+     * @return a string with an arrow.
+     */
+    public String getStringDirection() {
+        if (this.direction == Direction.UP) {
+            return "↑";
+        } else if (this.direction == Direction.DOWN) {
+            return "↓";
+        } else {
+            return "";
+        }
     }
 
     /**
@@ -92,6 +110,21 @@ public class Elevator {
     }
 
     /**
+     * Returns the direction of the elevator, based on its current floor and the first floor of the destinationQueue.
+     * 
+     * @return the direction of the elevator
+     */    
+    public Direction computeDirection() {
+        if (this.currentFloor < this.destinationQueue.get(0) || this.currentFloor == 0) {
+            return Direction.UP;
+        } else if (this.currentFloor > this.destinationQueue.get(0) || this.currentFloor == floorsCount) {
+            return Direction.DOWN;
+        } else {
+            return Direction.IDLE;
+        }
+    }
+
+    /**
      * Adds a new floor to the destination queue if it is not already present.
      * 
      * @param floor the floor number to add
@@ -99,7 +132,8 @@ public class Elevator {
     public void addDestination(int floor) {
         if (!this.destinationQueue.contains(floor)) {
             this.destinationQueue.add(floor);
-            logger.info("\tElevator {}: destinationQueue {}", this.id, this.getDestinationQueueStr());
+            this.direction = this.computeDirection();
+            logger.info("\tElevator {}: destinationQueue {}", this.id, this.getDestinationQueueStr());    
         }
     }
 
@@ -147,7 +181,6 @@ public class Elevator {
      * @param floor the Floor where passengers board the elevator
      */
     public void loadPassengers(Floor floor) {
-
         while (!this.isFull()) {
             Person person = floor.boardNextPerson();
             if (person == null)
@@ -168,8 +201,9 @@ public class Elevator {
      * Removes that floor from the queue.
      */
     public void move() {
-        if (!destinationQueue.isEmpty())
+        if (!destinationQueue.isEmpty()) {
             this.currentFloor = destinationQueue.removeFirst();
+        }
     }
 
     /**
