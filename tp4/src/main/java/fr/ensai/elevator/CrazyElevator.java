@@ -11,10 +11,11 @@ public class CrazyElevator extends Elevator {
  
     @Override
     public void move() {
-        if (random.nextDouble() >= 1/3 & random.nextDouble() < 2/3 & !destinationQueue.isEmpty()) {
+        double randomDouble = random.nextDouble();
+        if (randomDouble >= 1/3 & randomDouble < 2/3 & !destinationQueue.isEmpty()) {
             destinationQueue.removeFirst();
             this.currentFloor = destinationQueue.removeFirst();
-        } else if (random.nextDouble() >= 2/3 & !destinationQueue.isEmpty()) {
+        } else if (randomDouble >= 2/3 & !destinationQueue.isEmpty()) {
             this.currentFloor = destinationQueue.removeFirst();
         }
             
