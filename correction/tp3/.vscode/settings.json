@@ -1,10 +1,4 @@
 {
-<<<<<<< HEAD
-    "editor.inlayHints.enabled": "off",
-    "editor.formatOnSave": true,
-    "java.saveActions.organizeImports": true,
-    "cSpell.diagnosticLevel": "Hint",
-=======
     "workbench.colorTheme": "Default Dark Modern",
     "editor.fontSize": 16,
     "editor.formatOnSave": true,
